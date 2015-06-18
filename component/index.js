@@ -7,7 +7,7 @@ var chalk = require('chalk');
 var ComponentGenerator = yeoman.generators.NamedBase.extend({
 
   detectCodeLanguage: function() {
-    this.usesTypeScript = fs.existsSync('src/app/startup.ts');
+    this.usesTypeScript = fs.existsSync('scripts/app/startup.ts');
     this.codeFileExtension = this.usesTypeScript ? '.ts' : '.js';
   },
 
@@ -15,7 +15,7 @@ var ComponentGenerator = yeoman.generators.NamedBase.extend({
     var codeLanguage = this.usesTypeScript ? 'TypeScript' : 'JavaScript';
     console.log('Creating component \'' + this.name + '\' (' + codeLanguage + ')...');
     this.componentName = this.name;
-    this.dirname = 'src/components/' + this._.dasherize(this.name) + '/';
+    this.dirname = 'scripts/components/' + this._.dasherize(this.name) + '/';
     this.filename = this._.dasherize(this.name);
     this.viewModelClassName = this._.classify(this.name);
   },
@@ -27,7 +27,7 @@ var ComponentGenerator = yeoman.generators.NamedBase.extend({
   },
 
   addComponentRegistration: function() {
-    var startupFile = 'src/app/startup' + this.codeFileExtension;
+    var startupFile = 'scripts/app/startup' + this.codeFileExtension;
     readIfFileExists.call(this, startupFile, function(existingContents) {
         var existingRegistrationRegex = new RegExp('\\bko\\.components\\.register\\(\s*[\'"]' + this.filename + '[\'"]');
         if (existingRegistrationRegex.exec(existingContents)) {
