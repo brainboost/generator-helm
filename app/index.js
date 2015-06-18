@@ -48,7 +48,7 @@ var KoGenerator = yeoman.generators.Base.extend({
   askFor: function () {
     var done = this.async();
     this.log(this.yeoman);
-    this.log(chalk.magenta('You\'re using the fantastic huddle app generator.'));
+    this.log(chalk.magenta('You\'re using the knockoutjs app generator.'));
 
     var prompts = [{
       name: 'name',
@@ -60,14 +60,10 @@ var KoGenerator = yeoman.generators.Base.extend({
       default: ""
     }, {
       name: 'projectId',
-      message: 'What is the project ID in huddle for your app?',
+      message: 'What is the project ID for your app?',
       default: ""
-    }, /*{
-      type: 'list',
-      name: 'codeLanguage',
-      message: 'What language do you want to use?',
-      choices: [languageChoice.js, languageChoice.ts]
-    },*/ {
+    }, 
+    {
       type: 'confirm',
       name: 'includeTests',
       message: 'Do you want to include automated tests, using Jasmine and Karma?',
