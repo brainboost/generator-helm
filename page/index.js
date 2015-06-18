@@ -15,7 +15,7 @@ var PageGenerator = yeoman.generators.NamedBase.extend({
     var codeLanguage = this.usesTypeScript ? 'TypeScript' : 'JavaScript';
     console.log('Creating page \'' + this.name + '-page\' (' + codeLanguage + ')...');
     this.componentName = this.name;
-    this.dirname = 'src/components/' + this._.dasherize(this.name+'-page') + '/';
+    this.dirname = 'scripts/app/pages/' + this._.dasherize(this.name+'-page') + '/';
     this.filename = this._.dasherize(this.name+'-page');
     this.viewModelClassName = this._.classify(this.name+'-page');
     this.labelName = this._.capitalize(this.name);
@@ -28,7 +28,7 @@ var PageGenerator = yeoman.generators.NamedBase.extend({
   },
 
   addPageRegistration: function() {
-    var startupFile = 'src/app/startup' + this.codeFileExtension;
+    var startupFile = 'scripts/app/startup' + this.codeFileExtension;
     readIfFileExists.call(this, startupFile, function(existingContents) {
         var existingRegistrationRegex = new RegExp('\\bko\\.components\\.register\\(\s*[\'"]' + this.filename + '[\'"]');
         if (existingRegistrationRegex.exec(existingContents)) {
@@ -38,7 +38,7 @@ var PageGenerator = yeoman.generators.NamedBase.extend({
 
         var token = '// [Scaffolded page registrations will be inserted here. To retain this feature, don\'t remove this comment.]',
             regex = new RegExp('^(\\s*)(' + token.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&') + ')', 'm'),
-            modulePath = 'components/' + this.filename + '/' + this.filename,
+            modulePath = 'pages/' + this.filename + '/' + this.filename,
             lineToAdd = 'ko.components.register(\'' + this.filename + '\', { require: \'' + modulePath + '\' });',
             newContents = existingContents.replace(regex, '$1' + lineToAdd + '\n$&');
         fs.writeFile(startupFile, newContents);
@@ -51,7 +51,7 @@ var PageGenerator = yeoman.generators.NamedBase.extend({
   },
 
   addRouteRegistration: function() {
-    var routerFile = 'src/app/router' + this.codeFileExtension;
+    var routerFile = 'scripts/app/router' + this.codeFileExtension;
     readIfFileExists.call(this, routerFile, function(existingContents) {
         var existingRegistrationRegex = new RegExp("\{\s+url:\s+'"+ this.name +"',\s+params:\s+\{\s+page:\s+'"+ this.name +"-page'\s+\}\s+}");
         if (existingRegistrationRegex.exec(existingContents)) {
