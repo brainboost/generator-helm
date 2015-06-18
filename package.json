@@ -1,14 +1,14 @@
 {
-  "name": "generator-huddle",
-  "version": "0.3.43",
+  "name": "generator-helm",
+  "version": "0.1.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "techmuch/generator-huddle",
+  "repository": "brainboost/generator-helm",
   "author": {
-    "name": "David Fullmer",
+    "name": "Sergei Vedischev",
     "email": "",
-    "url": "https://github.com/techmuch"
+    "url": "https://github.com/brainboost"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -19,7 +19,6 @@
   "files": [
     "app",
     "component",
-    "d3_component",
     "page"
   ],
   "keywords": [
